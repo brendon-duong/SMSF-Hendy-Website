@@ -1547,18 +1547,11 @@
                 Vimeo:    https://player.vimeo.com/video/VIDEO_ID?autoplay=1
               -->
               <iframe
-                id="hero-video-iframe"
-                data-src=""
-                src=""
-                title="Hendy Limbri — Personalised Finance"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                src="https://www.youtube.com/embed/RWp_Hpq9TB8?rel=0&playsinline=1"
+                title="Hendy Limbri — SMSF Property Loans"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen>
               </iframe>
-              <!-- Placeholder shown until a video URL is added -->
-              <div class="hero__video-placeholder" id="hero-video-placeholder" onclick="playHeroVideo()">
-                <div class="hero__video-placeholder__play">▶</div>
-                <span class="hero__video-placeholder__label">Watch Hendy's Story</span>
-              </div>
             </div>
             <div class="hero__video-caption">
               <span class="hero__video-caption-dot"></span>
@@ -2153,16 +2146,6 @@
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    /* ── Inline Hero Video ── */
-    function playHeroVideo() {
-      const iframe = document.getElementById('hero-video-iframe');
-      const placeholder = document.getElementById('hero-video-placeholder');
-      const src = iframe.dataset.src;
-      if (src && src !== '') {
-        iframe.src = src;
-        placeholder.style.display = 'none';
-      }
-    }
   </script>
 
 </body>
