@@ -2120,7 +2120,7 @@
 
     // ── SMSF Form ─────────────────────────────────────────────
     const smsfForm = document.getElementById('smsf-form');
-    smsfForm.addEventListener('submit', e => {
+    smsfForm.addEventListener('submit', async e => {
       e.preventDefault();
       const valid = validateFields([
         { id: 's-name',        errId: 's-name-error' },
@@ -2130,7 +2130,25 @@
         { id: 's-proptype',    errId: 's-proptype-error' },
         { id: 's-repayments',  errId: 's-repayments-error' }
       ]);
-      if (valid) showSuccess(smsfForm);
+      if (!valid) return;
+      try {
+        const res = await fetch('https://formspree.io/f/mjgjqlve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            name:        document.getElementById('s-name').value,
+            phone:       document.getElementById('s-phone').value,
+            email:       document.getElementById('s-email').value,
+            city:        document.getElementById('s-city').value,
+            loan_status: document.getElementById('s-loan-status').value,
+            property_type: document.getElementById('s-proptype').value,
+            repayments:  document.getElementById('s-repayments').value,
+          })
+        });
+        if (res.ok) showSuccess(smsfForm);
+      } catch (_) {
+        showSuccess(smsfForm);
+      }
     });
     clearOnInput(['s-name','s-phone','s-email','s-loan-status','s-proptype','s-repayments']);
 
